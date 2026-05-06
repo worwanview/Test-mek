@@ -21,10 +21,7 @@ test.describe("Login Flow", () => {
       .click();
 
     await expect(
-      page
-        .locator("div")
-        .filter({ hasText: "สั่งงาน AI ของคุณธุรกิจ:" })
-        .nth(4),
+      page.getByRole("button", { name: "เพิ่มธุรกิจใหม่" }),
     ).toBeVisible();
   });
 });
