@@ -21,10 +21,12 @@ test.describe("Product Create Flow", () => {
       .getByRole("button", { name: "เข้าสู่ระบบ" })
       .click();
 
-    await page.getByText("Matcha Lab").waitFor({ state: "visible" });
-    await page.getByText("Matcha Lab").click();
+    const matchaLabCard = page.locator('[data-slot="card-title"]', {
+      hasText: "Matcha Lab",
+    });
+    await matchaLabCard.waitFor({ state: "visible" });
+    await matchaLabCard.click();
 
-    // Navigate to create product
     await page.goto(`${URL}dashboard/products/new?lang=th`);
 
     // Fill product details
@@ -43,10 +45,9 @@ test.describe("Product Create Flow", () => {
 
     // Select category
     await page.getByRole("combobox").first().click();
-    await page.getByRole("option", { name: "เครื่องดื่มพร้อมดื่ม" }).click();
+    await page.getByRole("option", { name: "เครื่องดื่มสำเร็จรูป" }).click();
 
     // Save
     await page.getByRole("button", { name: "บันทึก" }).click();
-
   });
 });
